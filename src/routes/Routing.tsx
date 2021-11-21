@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route as InnerRoute } from 'react-router-dom';
 import Splash from '~/common/components/Splash';
 import { RouteManifest } from '~/types';
-import routes from './Routes';
+import routes from './PublicRoutes';
 
 function Routing() {
   function renderRoutes() {
@@ -11,17 +11,14 @@ function Routing() {
 
   function renderRoute(route: RouteManifest) {
     const { path, component, children } = route;
-    let innerComponent = component;
 
     const innerRoutes = children?.map((i) => renderRoute(i));
+    const Component = component(<Routes>{innerRoutes}</Routes>);
 
-    if (typeof component === 'function') {
-      innerComponent = component(<Routes>{innerRoutes}</Routes>);
-    }
     const element = (
-      <React.Suspense fallback={Splash}>{innerComponent}</React.Suspense>
+      <React.Suspense fallback={Splash}>{Component}</React.Suspense>
     );
-    return <Route key={route.path} {...{ path, element }} />;
+    return <InnerRoute key={route.path} {...{ path, element }} />;
   }
 
   return (

@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { lazy } from 'react';
 
 import { RouteManifest } from '~/types';
 import PrivateRoutes from './PrivateRoutes';
 
-const Home = React.lazy(() => import('~/modules/home'));
-const Layout = React.lazy(() => import('~/common/components/Layout'));
+const Home = lazy(() => import('~/modules/home'));
+const Layout = lazy(() => import('~/common/components/Layout'));
 
-const routes: RouteManifest[] = [
+const publicRoutes: RouteManifest[] = [
   {
     id: 1,
     path: '/',
     title: 'Home',
-    component: <Home />,
+    component: () => <Home />,
   },
   {
     id: 2,
@@ -21,8 +21,8 @@ const routes: RouteManifest[] = [
   },
   {
     path: '*',
-    component: <div>Not found</div>,
+    component: () => <div>Not found</div>,
   },
 ];
 
-export default routes;
+export default publicRoutes;
