@@ -15,10 +15,16 @@ module.exports = {
       },
     },
   ],
-  // webpack: {
-  //   configure: (webpackConfig, { env, paths }) => {
-  //     console.log(webpackConfig);
-  //     return webpackConfig;
-  //   },
-  // },
+  /*
+  webpack: {
+    configure: (webpackConfig, { env, paths }) => {
+      webpackConfig.module.rules.push({
+        test: /\.svg$/,
+        use: ['@svgr/webpack', 'url-loader'],
+      });
+      console.log(webpackConfig);
+      return webpackConfig;
+    },
+  },
+   */
 };

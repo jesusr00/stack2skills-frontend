@@ -1,3 +1,6 @@
 {
-  "hello-word": "Hello Word"
+  "title": "Tech administration for developers",
+  "subtitle": "Easily map out which open source & SaaS solutions are being used across your engineering teams, why they’re being used, and who someone should talk to about each technology.",
+  "login": "Log In",
+  "browse": "Browse"
 }
