@@ -20,6 +20,7 @@ const publicRoutes: RouteManifest[] = [
     children: PrivateRoutes,
   },
   {
+    id: 0,
     path: '*',
     component: () => <div>Not found</div>,
   },

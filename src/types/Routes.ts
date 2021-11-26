@@ -1,12 +1,13 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
 export type RouteManifest = {
   path: string;
   component: (childen: any) => any;
-  id?: number;
+  id: number;
   showInSidebar?: boolean;
   title?: string;
   conditionToRender?: () => boolean;
   permissionsNeeds?: string[];
   children?: RouteManifest[];
+  icon?: ReactNode;
 };

@@ -1,5 +1,4 @@
 import { Grid, styled, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 
 import { ReactComponent as LandingBg } from '~/assets/vectors/landingbg.svg';
 
