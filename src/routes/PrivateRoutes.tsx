@@ -9,6 +9,9 @@ import { RouteManifest } from '~/types';
 
 const ProjectsList = React.lazy(() => import('~/modules/projects'));
 const Dashboard = React.lazy(() => import('~/modules/dashboard'));
+const CreateOrganization = React.lazy(
+  () => import('~/modules/organization/views/CreateOrganization'),
+);
 const MyAccount = React.lazy(() => import('~/modules/account'));
 const AppRegistry = React.lazy(() => import('~/modules/appRegistry'));
 
@@ -31,10 +34,10 @@ const routes: RouteManifest[] = [
   },
   {
     id: 3,
-    path: '/account',
-    title: 'account',
+    path: '/organization/create',
+    title: 'create',
     showInSidebar: false,
-    component: () => <MyAccount />,
+    component: () => <CreateOrganization />,
   },
   {
     id: 4,
@@ -43,6 +46,13 @@ const routes: RouteManifest[] = [
     showInSidebar: true,
     icon: <AppRegistrationIcon />,
     component: () => <AppRegistry />,
+  },
+  {
+    id: 5,
+    path: '/account',
+    title: 'account',
+    showInSidebar: false,
+    component: () => <MyAccount />,
   },
   {
     id: 0,
