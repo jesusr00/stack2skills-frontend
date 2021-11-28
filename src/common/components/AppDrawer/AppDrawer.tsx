@@ -1,5 +1,4 @@
-import React from 'react';
-import { DrawerHeader } from '~/common/components/Layout/styles';
+import React, { useMemo } from 'react';
 import {
   Box,
   IconButton,
@@ -12,60 +11,58 @@ import {
 } from '@mui/material';
 import { ChevronLeft as ChevronLeftIcon } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
-import routes from '~/routes/PrivateRoutes';
-import { useCommonStore } from '~/common';
-import { Observer } from 'mobx-react-lite';
-import { StyledLink } from './styles';
+import { observer } from 'mobx-react-lite';
 
-function AppDrawer(): JSX.Element {
+import routes from '~/routes/PrivateRoutes';
+import { appStore } from '~/common';
+import { StyledLink, DrawerHeader } from './styles';
+
+const AppDrawer = observer(() => {
   const [t] = useTranslation();
-  const { isDrawerOpen, setIsDrawerOpen } = useCommonStore();
+
+  const routesMemorized = useMemo(() => {
+    return routes
+      .filter((route) => route.showInSidebar)
+      .sort((a, b) => a.id - b.id);
+  }, []);
 
   const renderList = () => (
     <List>
-      {routes
-        .filter((route) => route.showInSidebar)
-        .sort((a, b) => a.id - b.id)
-        .map((route, index) => (
-          <StyledLink to={`/app${route.path}`} key={index}>
-            <ListItem button onClick={() => setIsDrawerOpen(false)}>
-              <ListItemIcon>{route.icon}</ListItemIcon>
-              <ListItemText primary={t(`common.${route.title}`)} />
-            </ListItem>
-          </StyledLink>
-        ))}
+      {routesMemorized.map((route, index) => (
+        <StyledLink to={`/app${route.path}`} key={index}>
+          <ListItem button onClick={() => appStore.toggleDrawer()}>
+            <ListItemIcon>{route.icon}</ListItemIcon>
+            <ListItemText primary={t(`common.${route.title}`)} />
+          </ListItem>
+        </StyledLink>
+      ))}
     </List>
   );
 
   return (
-    <Observer>
-      {() => (
-        <Drawer
-          open={isDrawerOpen}
-          anchor={'left'}
-          onClose={() => setIsDrawerOpen(true)}
-          onBackdropClick={() => setIsDrawerOpen(true)}
+    <Drawer
+      open={appStore.isDrawerOpen}
+      anchor="left"
+      onClose={() => appStore.toggleDrawer()}
+    >
+      <DrawerHeader>
+        <Typography
+          variant="h4"
+          sx={{ flexGrow: 1 }}
+          color={'primary'}
+          fontWeight={700}
         >
-          <DrawerHeader>
-            <Typography
-              variant="h4"
-              sx={{ flexGrow: 1 }}
-              color={'primary'}
-              fontWeight={700}
-            >
-              Stack2Skill
-            </Typography>
-            <IconButton onClick={() => setIsDrawerOpen(false)}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </DrawerHeader>
-          <Box sx={{ width: 250 }} role="presentation">
-            {renderList()}
-          </Box>
-        </Drawer>
-      )}
-    </Observer>
+          Stack2Skill
+        </Typography>
+        <IconButton onClick={() => appStore.toggleDrawer()}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </DrawerHeader>
+      <Box sx={{ width: 250 }} role="presentation">
+        {renderList()}
+      </Box>
+    </Drawer>
   );
-}
+});
 
 export default AppDrawer;

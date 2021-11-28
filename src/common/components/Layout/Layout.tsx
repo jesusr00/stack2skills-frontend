@@ -1,6 +1,5 @@
 import Header from '../Header';
 import AppDrawer from '~/common/components/AppDrawer';
-import { CommonProvider } from '~/common/store';
 
 type LayoutProps = {
   children: any;
@@ -11,11 +10,9 @@ function Layout(props: LayoutProps) {
 
   return (
     <>
-      <CommonProvider>
-        <Header />
-        <AppDrawer />
-        {children}
-      </CommonProvider>
+      <Header />
+      <AppDrawer />
+      {children}
     </>
   );
 }

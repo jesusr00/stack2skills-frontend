@@ -1,4 +1,4 @@
 import * as langs from './i18n';
-import { createCommonStore, useCommonStore } from './store';
+import appStore from './store';
 
-export { langs, createCommonStore, useCommonStore };
+export { langs, appStore };

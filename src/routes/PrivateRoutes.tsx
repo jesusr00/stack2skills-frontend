@@ -12,20 +12,20 @@ const Dashboard = React.lazy(() => import('~/modules/dashboard'));
 
 const routes: RouteManifest[] = [
   {
-    id: 2,
-    path: '/projects',
-    title: 'projects',
-    showInSidebar: true,
-    icon: <BallotIcon />,
-    component: () => <ProjectsList />,
-  },
-  {
     id: 1,
     path: '/',
     title: 'dashboard',
     showInSidebar: true,
     icon: <DashboardIcon />,
     component: () => <Dashboard />,
+  },
+  {
+    id: 2,
+    path: '/projects',
+    title: 'projects',
+    showInSidebar: true,
+    icon: <BallotIcon />,
+    component: () => <ProjectsList />,
   },
   {
     id: 0,

@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import {
+  FakeToolbar,
   GradientAppBar,
   Search,
   SearchIconWrapper,
@@ -20,13 +21,12 @@ import {
   Notifications as NotificationsIcon,
   Menu as MenuIcon,
   Search as SearchIcon,
-  More as MoreIcon,
+  MoreVert as MoreIcon,
 } from '@mui/icons-material';
-import { useCommonStore } from '~/common';
+import { appStore } from '~/common';
+import { observer } from 'mobx-react-lite';
 
-function Header() {
-  const { setIsDrawerOpen } = useCommonStore();
-
+const Header = observer(() => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     useState<null | HTMLElement>(null);
@@ -56,7 +56,7 @@ function Header() {
     <Menu
       anchorEl={anchorEl}
       anchorOrigin={{
-        vertical: 'top',
+        vertical: 'bottom',
         horizontal: 'right',
       }}
       id={menuId}
@@ -78,7 +78,7 @@ function Header() {
     <Menu
       anchorEl={mobileMoreAnchorEl}
       anchorOrigin={{
-        vertical: 'top',
+        vertical: 'bottom',
         horizontal: 'right',
       }}
       id={mobileMenuId}
@@ -110,18 +110,6 @@ function Header() {
         </IconButton>
         <p>Notifications</p>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircleIcon />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
     </Menu>
   );
 
@@ -135,7 +123,7 @@ function Header() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={() => setIsDrawerOpen(true)}
+            onClick={() => appStore.toggleDrawer()}
           >
             <MenuIcon />
           </IconButton>
@@ -176,18 +164,18 @@ function Header() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircleIcon />
-            </IconButton>
           </Box>
+          <IconButton
+            size="large"
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit"
+          >
+            <AccountCircleIcon />
+          </IconButton>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -204,8 +192,9 @@ function Header() {
         {renderMobileMenu}
         {renderMenu}
       </GradientAppBar>
+      <FakeToolbar />
     </>
   );
-}
+});
 
 export default Header;
