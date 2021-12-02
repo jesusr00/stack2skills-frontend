@@ -8,6 +8,7 @@ import { langs as commonLangs } from '~/common';
 import { langs as organizationLangs } from '~/modules/organization';
 import { langs as accountLangs } from '~/modules/account';
 import { langs as appRegistryLangs } from '~/modules/appRegistry';
+import { langs as signInLangs } from '~/modules/sign_in';
 import { Config } from '.';
 
 i18n
@@ -29,6 +30,7 @@ i18n
           organization: organizationLangs.es,
           account: accountLangs.es,
           appRegistry: appRegistryLangs.es,
+          signIn: signInLangs.es,
         },
       },
       en: {
@@ -39,6 +41,7 @@ i18n
           organization: organizationLangs.en,
           account: accountLangs.en,
           appRegistry: appRegistryLangs.en,
+          signIn: signInLangs.en,
         },
       },
     },

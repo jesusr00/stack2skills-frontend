@@ -1,17 +1,17 @@
-import React, { lazy } from 'react';
+import React from 'react';
+import SignIn from '~/modules/sign_in/index';
 
 import { RouteManifest } from '~/types';
 import PrivateRoutes from './PrivateRoutes';
 
-const Home = lazy(() => import('~/modules/home'));
-const Layout = lazy(() => import('~/common/components/Layout'));
-const SignIn = lazy(() => import('~/modules/sign_in'));
+const Home = React.lazy(() => import('~/modules/home'));
+const Layout = React.lazy(() => import('~/common/components/Layout'));
 
-const publicRoutes: RouteManifest[] = [
+const routes: RouteManifest[] = [
   {
     id: 1,
     path: '/',
-    title: 'Home',
+    title: 'home',
     component: () => <Home />,
   },
   {
@@ -23,7 +23,7 @@ const publicRoutes: RouteManifest[] = [
   {
     id: 3,
     path: '/sign-in',
-    title: 'SignIn',
+    title: 'signin',
     component: () => <SignIn />,
   },
   {
@@ -33,4 +33,4 @@ const publicRoutes: RouteManifest[] = [
   },
 ];
 
-export default publicRoutes;
+export default routes;

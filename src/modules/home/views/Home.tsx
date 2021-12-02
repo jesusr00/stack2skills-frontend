@@ -30,7 +30,9 @@ function Home(): JSX.Element {
           <Title variant={'h3'}>{t('home.title')}</Title>
           <Description variant={'h6'}>{t('home.subtitle')}</Description>
           <ButtonContainer>
-            <Button variant="contained">{t('home.login')}</Button>
+            <Button href="sign-in" variant="contained">
+              {t('home.login')}
+            </Button>
           </ButtonContainer>
         </TextContainer>
         <Grid item xs={12} sm={12} md={5} xl={5}>
