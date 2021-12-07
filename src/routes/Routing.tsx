@@ -4,7 +4,7 @@ import Splash from '~/common/components/Splash';
 import { RouteManifest } from '~/types';
 import routes from './PublicRoutes';
 
-function Routing() {
+function Routing(): JSX.Element {
   function renderRoutes() {
     return routes.map((route) => renderRoute(route));
   }
@@ -16,7 +16,7 @@ function Routing() {
     const Component = component(<Routes>{innerRoutes}</Routes>);
 
     const element = (
-      <React.Suspense fallback={Splash}>{Component}</React.Suspense>
+      <React.Suspense fallback={<Splash />}>{Component}</React.Suspense>
     );
     return <InnerRoute key={route.path} {...{ path, element }} />;
   }

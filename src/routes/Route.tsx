@@ -8,7 +8,7 @@ type RouteProps = RouteManifest;
 function Route(props: RouteProps) {
   const { path, component } = props;
   const element = (
-    <React.Suspense fallback={Splash}>{component}</React.Suspense>
+    <React.Suspense fallback={<Splash />}>{component}</React.Suspense>
   );
   return <InnerRoute {...{ path, element }} />;
 }

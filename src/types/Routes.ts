@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 export type RouteManifest = {
   path: string;
-  component: (childen: any) => any;
+  component: (childen: ReactNode) => ReactNode;
   id: number;
   showInSidebar?: boolean;
   title?: string;

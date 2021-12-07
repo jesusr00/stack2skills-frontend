@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import SignIn from '~/modules/sign_in/index';
 
 import { RouteManifest } from '~/types';
@@ -17,7 +17,7 @@ const routes: RouteManifest[] = [
   {
     id: 2,
     path: '/app/*',
-    component: (children: any) => <Layout {...{ children }} />,
+    component: (children: ReactNode) => <Layout {...{ children }} />,
     children: PrivateRoutes,
   },
   {

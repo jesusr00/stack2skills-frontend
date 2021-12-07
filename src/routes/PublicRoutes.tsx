@@ -1,4 +1,5 @@
 import React, { lazy } from 'react';
+import { ReactNode } from 'react';
 
 import { RouteManifest } from '~/types';
 import PrivateRoutes from './PrivateRoutes';
@@ -17,7 +18,7 @@ const publicRoutes: RouteManifest[] = [
   {
     id: 2,
     path: '/app/*',
-    component: (children: any) => <Layout {...{ children }} />,
+    component: (children: ReactNode) => <Layout {...{ children }} />,
     children: PrivateRoutes,
   },
   {

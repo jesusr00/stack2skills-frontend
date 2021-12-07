@@ -1,4 +1,4 @@
-import { Link, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import Lottie from 'react-lottie-player';
 import {
   RootContainer,

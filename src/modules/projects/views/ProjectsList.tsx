@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-function ProjectList() {
+function ProjectList(): JSX.Element {
   const [t, i18n] = useTranslation();
 
   return (

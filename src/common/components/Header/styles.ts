@@ -5,7 +5,7 @@ export const FakeToolbar = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export const GradientAppBar = styled(AppBar)(({ theme }) => ({
+export const GradientAppBar = styled(AppBar)(() => ({
   background: 'linear-gradient(to right bottom, #0de7fe, #4bb0fe)',
 }));
 

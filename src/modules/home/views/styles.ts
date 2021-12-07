@@ -1,5 +1,5 @@
 import { Grid, styled, Typography } from '@mui/material';
-
+import { Link as RouterLink } from 'react-router-dom';
 import { ReactComponent as LandingBg } from '~/assets/vectors/landingbg.svg';
 
 export const RootContainer = styled(Grid)(({ theme }) => ({
@@ -43,6 +43,7 @@ export const Description = styled(Typography)(({ theme }) => ({
 export const ButtonContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   margin: '30px 30px 30px 0',
+  textDecoration: 'none',
 
   [theme.breakpoints.down('md')]: {
     justifyContent: 'center',
@@ -60,4 +61,8 @@ export const SvgImage = styled(LandingBg)(({ theme }) => ({
     opacity: 0.07,
     height: '100vh',
   },
+}));
+
+export const Link = styled(RouterLink)(() => ({
+  textDecoration: 'none',
 }));

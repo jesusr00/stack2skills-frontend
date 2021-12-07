@@ -8,6 +8,7 @@ import {
   SvgImage,
   TextContainer,
   Title,
+  Link,
 } from './styles';
 
 function Home(): JSX.Element {
@@ -30,9 +31,9 @@ function Home(): JSX.Element {
           <Title variant={'h3'}>{t('home.title')}</Title>
           <Description variant={'h6'}>{t('home.subtitle')}</Description>
           <ButtonContainer>
-            <Button href="sign-in" variant="contained">
-              {t('home.login')}
-            </Button>
+            <Link to={'/sign-in'}>
+              <Button variant="contained">{t('home.login')}</Button>
+            </Link>
           </ButtonContainer>
         </TextContainer>
         <Grid item xs={12} sm={12} md={5} xl={5}>

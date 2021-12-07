@@ -1,11 +1,12 @@
 import Header from '../Header';
 import AppDrawer from '~/common/components/AppDrawer';
+import { ReactNode } from 'react';
 
 type LayoutProps = {
-  children: any;
+  children: ReactNode;
 };
 
-function Layout(props: LayoutProps) {
+function Layout(props: LayoutProps): JSX.Element {
   const { children } = props;
 
   return (
