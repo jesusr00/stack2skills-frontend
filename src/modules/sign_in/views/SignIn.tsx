@@ -12,9 +12,20 @@ import SignInAnimation from '~/assets/Lottie/sign-in-anim.json';
 import { ReactComponent as MicrosoftIcon } from '~/assets/vectors/microsoft.svg';
 import { ReactComponent as GoogleIcon } from '~/assets/vectors/google.svg';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 const SignIn = (): React.ReactElement => {
   const [t] = useTranslation();
+
+  const googleAuth = async () => {
+    await axios({
+      url: `https://staging-stack2skills-yfmnwrj6gq-ue.a.run.app/auth/google`,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <RootContainer>
@@ -26,7 +37,10 @@ const SignIn = (): React.ReactElement => {
             flexDirection={'column'}
             alignItems={'flex-start'}
           >
-            <SignInButton startIcon={<GoogleIcon height={'20'} />}>
+            <SignInButton
+              onClick={googleAuth}
+              startIcon={<GoogleIcon height={'20'} />}
+            >
               {t('signIn.google')}
             </SignInButton>
             <SignInButton startIcon={<MicrosoftIcon height={'20'} />}>
