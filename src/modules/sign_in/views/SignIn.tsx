@@ -12,17 +12,9 @@ import SignInAnimation from '~/assets/Lottie/sign-in-anim.json';
 import { ReactComponent as MicrosoftIcon } from '~/assets/vectors/microsoft.svg';
 import { ReactComponent as GoogleIcon } from '~/assets/vectors/google.svg';
 import { useTranslation } from 'react-i18next';
-import { useServerManager } from '~/common/axios/ServerManagerProvider';
 
 const SignIn = (): React.ReactElement => {
   const [t] = useTranslation();
-  const serverManager = useServerManager();
-
-  const handleGoogleSignIn = () => {
-    serverManager.googleAuth().then((r) => {
-      console.log(r);
-    });
-  };
 
   return (
     <RootContainer>
@@ -34,7 +26,10 @@ const SignIn = (): React.ReactElement => {
             flexDirection={'column'}
             alignItems={'flex-start'}
           >
-            <SignInButton onClick={handleGoogleSignIn} startIcon={<GoogleIcon height={'20'} />}>
+            <SignInButton
+              href={`${process.env.REACT_APP_API_URL}/auth/google`}
+              startIcon={<GoogleIcon height={'20'} />}
+            >
               {t('signIn.google')}
             </SignInButton>
             <SignInButton startIcon={<MicrosoftIcon height={'20'} />}>

@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -11,18 +11,16 @@ class ServerManager {
     });
   }
 
-  refreshInstance() {
+  refreshInstance(): void {
     this.apiAxios = axios.create({
       baseURL: API_URL,
       headers: {},
     });
   }
 
-
-  googleAuth(){
-    return this.apiAxios.get('/auth/google')
+  googleAuth(): Promise<AxiosResponse> {
+    return this.apiAxios.get('/auth/google');
   }
-
 }
 
 export default ServerManager;

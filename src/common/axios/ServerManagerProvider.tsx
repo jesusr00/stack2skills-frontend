@@ -1,14 +1,14 @@
 import React from 'react';
-import ServerManager from './ServerManager'
+import ServerManager from './ServerManager';
 
 interface ServerManagerProviderProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const serverManager = new ServerManager();
 const AxiosProviderStateContext = React.createContext(serverManager);
 
-function ServerManagerProvider(props: ServerManagerProviderProps) {
+function ServerManagerProvider(props: ServerManagerProviderProps): JSX.Element {
   return (
     <AxiosProviderStateContext.Provider value={serverManager}>
       {props.children}
@@ -19,12 +19,16 @@ function ServerManagerProvider(props: ServerManagerProviderProps) {
 function useServerManager(): ServerManager {
   const context = React.useContext(AxiosProviderStateContext);
   if (context === undefined) {
-    throw new Error("useServerManager must be used within a ServerManagerProvider");
+    throw new Error(
+      'useServerManager must be used within a ServerManagerProvider',
+    );
   }
   return context;
 }
 
-function withServerManager(WrappedComponent: any) {
+function withServerManager(
+  WrappedComponent: typeof React.Component,
+): React.ElementType {
   return class ServerManager extends React.Component {
     static contextType = AxiosProviderStateContext;
 
