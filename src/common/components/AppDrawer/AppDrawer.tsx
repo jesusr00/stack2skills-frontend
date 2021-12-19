@@ -15,7 +15,8 @@ import { observer } from 'mobx-react-lite';
 
 import routes from '~/routes/PrivateRoutes';
 import { appStore } from '~/common';
-import { StyledLink, DrawerHeader } from './styles';
+import { DrawerHeader } from './styles';
+import { Link } from '~/common';
 
 const AppDrawer = observer(() => {
   const [t] = useTranslation();
@@ -29,12 +30,12 @@ const AppDrawer = observer(() => {
   const renderList = () => (
     <List>
       {routesMemorized.map((route, index) => (
-        <StyledLink to={`/app${route.path}`} key={index}>
+        <Link to={`/app${route.path}`} key={index}>
           <ListItem button onClick={() => appStore.toggleDrawer()}>
             <ListItemIcon>{route.icon}</ListItemIcon>
             <ListItemText primary={t(`common.${route.title}`)} />
           </ListItem>
-        </StyledLink>
+        </Link>
       ))}
     </List>
   );

@@ -15,6 +15,7 @@ import {
   SearchIconWrapper,
   StyledInputBase,
 } from './styles';
+import { Link } from '~/common';
 import {
   AccountCircle as AccountCircleIcon,
   Mail as MailIcon,
@@ -68,7 +69,9 @@ const Header = observer(() => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <Link to={'/app/account'}>
+        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      </Link>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );

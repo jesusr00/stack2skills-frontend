@@ -5,6 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { langs as homeLangs } from '~/modules/home';
 import { langs as projectLangs } from '~/modules/projects';
 import { langs as commonLangs } from '~/common';
+import { langs as accountLangs } from '~/modules/account';
 import { Config } from '.';
 
 i18n
@@ -23,6 +24,7 @@ i18n
           home: homeLangs.es,
           projects: projectLangs.es,
           common: commonLangs.es,
+          account: accountLangs.es,
         },
       },
       en: {
@@ -30,6 +32,7 @@ i18n
           home: homeLangs.en,
           projects: projectLangs.en,
           common: commonLangs.en,
+          account: accountLangs.en,
         },
       },
     },
