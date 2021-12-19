@@ -1,0 +1,9 @@
+{
+  "description": "Descripción",
+  "repository-url": "URL del repositorio",
+  "framework": "Marco de referencia",
+  "contributors": "Contribuidores",
+  "languages": "Lenguages",
+  "dependencies": "Dependencias",
+  "name": "Nombre de la aplicación"
+}

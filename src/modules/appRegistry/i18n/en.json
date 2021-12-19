@@ -1,0 +1,9 @@
+{
+  "description": "Description",
+  "repository-url": "Repository URL",
+  "framework": "Framework",
+  "contributors": "Contributors",
+  "languages": "Languages",
+  "dependencies": "Dependencies",
+  "name": "App name"
+}
