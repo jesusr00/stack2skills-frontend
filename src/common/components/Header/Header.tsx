@@ -130,12 +130,7 @@ const Header = observer(() => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h4"
-            sx={{ flexGrow: 1 }}
-            //color={'primary'}
-            fontWeight={700}
-          >
+          <Typography variant="h4" sx={{ flexGrow: 1 }} fontWeight={700}>
             Stack2Skill
           </Typography>
           <Search>

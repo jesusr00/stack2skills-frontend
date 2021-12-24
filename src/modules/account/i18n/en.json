@@ -3,5 +3,8 @@
   "edit": {
     "title": "Edit Account",
     "subtitle": "Modify your personal information"
-  }
+  },
+  "projects": "Projects",
+  "repositories": "Repositories",
+  "organizations": "Organizations"
 }

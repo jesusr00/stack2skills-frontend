@@ -24,7 +24,6 @@ export const BodyContainer = styled(Grid)(() => ({
 export const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(4),
-  //color: theme.palette.text.secondary,
   height: '12em',
   display: 'flex',
   flexDirection: 'row',
