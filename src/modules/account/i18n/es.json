@@ -1,0 +1,10 @@
+{
+  "welcome": "Bienvenido",
+  "edit": {
+    "title": "Editar Cuenta",
+    "subtitle": "Modifica tu información personal"
+  },
+  "projects": "Proyectos",
+  "repositories": "Repositorios",
+  "organizations": "Organizaciones"
+}

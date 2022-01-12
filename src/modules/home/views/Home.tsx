@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Typography, AppBar, Box, Toolbar, Button, Grid } from '@mui/material';
+import { Typography, AppBar, Toolbar, Button, Grid } from '@mui/material';
 
 import {
   ButtonContainer,

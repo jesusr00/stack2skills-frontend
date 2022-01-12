@@ -1,5 +1,4 @@
 import React from 'react';
-import {} from 'react-router-dom';
 import {
   Ballot as BallotIcon,
   Dashboard as DashboardIcon,
@@ -10,6 +9,7 @@ import { RouteManifest } from '~/types';
 
 const ProjectsList = React.lazy(() => import('~/modules/projects'));
 const Dashboard = React.lazy(() => import('~/modules/dashboard'));
+const MyAccount = React.lazy(() => import('~/modules/account'));
 const AppRegistry = React.lazy(() => import('~/modules/appRegistry'));
 
 const routes: RouteManifest[] = [
@@ -31,6 +31,13 @@ const routes: RouteManifest[] = [
   },
   {
     id: 3,
+    path: '/account',
+    title: 'account',
+    showInSidebar: false,
+    component: () => <MyAccount />,
+  },
+  {
+    id: 4,
     path: '/app-registry',
     title: 'app-registry',
     showInSidebar: true,
