@@ -6,6 +6,7 @@ import { langs as homeLangs } from '~/modules/home';
 import { langs as projectLangs } from '~/modules/projects';
 import { langs as commonLangs } from '~/common';
 import { langs as accountLangs } from '~/modules/account';
+import { langs as appRegistryLangs } from '~/modules/appRegistry';
 import { Config } from '.';
 
 i18n
@@ -25,6 +26,7 @@ i18n
           projects: projectLangs.es,
           common: commonLangs.es,
           account: accountLangs.es,
+          appRegistry: appRegistryLangs.es,
         },
       },
       en: {
@@ -33,6 +35,7 @@ i18n
           projects: projectLangs.en,
           common: commonLangs.en,
           account: accountLangs.en,
+          appRegistry: appRegistryLangs.en,
         },
       },
     },

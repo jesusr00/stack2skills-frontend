@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Ballot as BallotIcon,
   Dashboard as DashboardIcon,
+  AppRegistration as AppRegistrationIcon,
 } from '@mui/icons-material';
 
 import { RouteManifest } from '~/types';
@@ -9,6 +10,7 @@ import { RouteManifest } from '~/types';
 const ProjectsList = React.lazy(() => import('~/modules/projects'));
 const Dashboard = React.lazy(() => import('~/modules/dashboard'));
 const MyAccount = React.lazy(() => import('~/modules/account'));
+const AppRegistry = React.lazy(() => import('~/modules/appRegistry'));
 
 const routes: RouteManifest[] = [
   {
@@ -33,6 +35,14 @@ const routes: RouteManifest[] = [
     title: 'account',
     showInSidebar: false,
     component: () => <MyAccount />,
+  },
+  {
+    id: 4,
+    path: '/app-registry',
+    title: 'app-registry',
+    showInSidebar: true,
+    icon: <AppRegistrationIcon />,
+    component: () => <AppRegistry />,
   },
   {
     id: 0,
