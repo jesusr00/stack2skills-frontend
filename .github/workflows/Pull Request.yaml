@@ -21,6 +21,8 @@ jobs:
         run: yarn install
 
       - name: Run checks
+        env:
+          CI: false
         run: yarn run check
 
       - name: Build
