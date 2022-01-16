@@ -1,5 +1,9 @@
 {
   "dashboard": "Dashboard",
   "projects": "Projects",
-  "app-registry": "App registry"
+  "app-registry": "App registry",
+  "empty": "Nothing to Show",
+  "org": "Organozations",
+  "applications": "Applications",
+  "inDev": "This section is under development. It will be available soon."
 }

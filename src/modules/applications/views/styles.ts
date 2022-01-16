@@ -5,6 +5,7 @@ import {
   Grid,
   Paper,
   FormControl,
+  Fab as MuiFab,
 } from '@mui/material';
 
 export const RootContainer = styled(Container)(() => ({
@@ -45,4 +46,10 @@ export const LogoCard = styled(Paper)(() => ({
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '2rem',
+}));
+
+export const Fab = styled(MuiFab)(() => ({
+  position: 'absolute',
+  right: 10,
+  bottom: 10,
 }));

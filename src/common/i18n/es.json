@@ -1,5 +1,9 @@
 {
   "dashboard": "Tablero",
   "projects": "Proyectos",
-  "app-registry": "Registrar aplicación"
+  "app-registry": "Registrar aplicación",
+  "empty": "Nada para mostrar",
+  "org": "Organizaciones",
+  "applications": "Aplicaciones",
+  "inDev": "Esta sección se encuentra en desarrollo. Proximamente estará disponible."
 }

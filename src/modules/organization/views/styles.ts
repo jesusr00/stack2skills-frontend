@@ -6,6 +6,7 @@ import {
   Container as MuiContainer,
   Typography as MuiTypography,
   Paper,
+  Fab as MuiFab,
 } from '@mui/material';
 
 export const RootContainer = styled(MuiContainer)(() => ({
@@ -67,4 +68,10 @@ export const TextField = styled(MuiTextField)(() => ({
 export const Button = styled(MuiButton)(() => ({
   margin: '1em',
   width: 'auto',
+}));
+
+export const Fab = styled(MuiFab)(() => ({
+  position: 'absolute',
+  right: 10,
+  bottom: 10,
 }));

@@ -8,7 +8,7 @@ import {
   HeadTypografy,
   LogoPaper,
 } from './styles';
-import { Avatar, Box, Paper } from '@mui/material';
+import { Avatar, Box } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 

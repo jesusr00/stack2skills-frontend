@@ -7,7 +7,7 @@ import { langs as projectLangs } from '~/modules/projects';
 import { langs as commonLangs } from '~/common';
 import { langs as organizationLangs } from '~/modules/organization';
 import { langs as accountLangs } from '~/modules/account';
-import { langs as appRegistryLangs } from '~/modules/appRegistry';
+import { langs as applicationsLangs } from '~/modules/applications';
 import { langs as signInLangs } from '~/modules/sign_in';
 import { Config } from '.';
 
@@ -29,7 +29,7 @@ i18n
           common: commonLangs.es,
           organization: organizationLangs.es,
           account: accountLangs.es,
-          appRegistry: appRegistryLangs.es,
+          applications: applicationsLangs.es,
           signIn: signInLangs.es,
         },
       },
@@ -40,7 +40,7 @@ i18n
           common: commonLangs.en,
           organization: organizationLangs.en,
           account: accountLangs.en,
-          appRegistry: appRegistryLangs.en,
+          applications: applicationsLangs.en,
           signIn: signInLangs.en,
         },
       },

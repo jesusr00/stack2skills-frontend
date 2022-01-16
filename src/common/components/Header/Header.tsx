@@ -72,7 +72,6 @@ const Header = observer(() => {
       <Link to={'/app/account'}>
         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       </Link>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
 

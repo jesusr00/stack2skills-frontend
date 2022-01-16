@@ -8,7 +8,7 @@ import { ReactComponent as RepoIcon } from '~/assets/vectors/repoIcon.svg';
 import { ReactComponent as ProjectsIcon } from '~/assets/vectors/projectIcon.svg';
 import { ReactComponent as OrganizationIcon } from '~/assets/vectors/organizationIcon.svg';
 
-export default function MyAccount() {
+export default function MyAccount(): JSX.Element {
   const [t] = useTranslation();
 
   const avatarSrc = useMemo<string>(() => {

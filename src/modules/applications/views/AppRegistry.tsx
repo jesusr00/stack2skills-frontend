@@ -41,19 +41,19 @@ function AppRegistry(): JSX.Element {
     <RootContainer>
       <GridContainer container spacing={5}>
         <Grid item md={8} xs={12}>
-          <AppNameField label={t('appRegistry.name')} />
+          <AppNameField label={t('applications.name')} />
           <TextField
             multiline
             maxRows={4}
             rows={4}
-            label={t('appRegistry.description')}
+            label={t('applications.description')}
             inputProps={{ maxLength: 350 }}
           />
-          <URLRepo label={t('appRegistry.repository-url')} />
+          <URLRepo label={t('applications.repository-url')} />
 
           <FrameworkSelect>
-            <InputLabel>{t('appRegistry.framework')}</InputLabel>
-            <Select label={t('appRegistry.framework')}>
+            <InputLabel>{t('applications.framework')}</InputLabel>
+            <Select label={t('applications.framework')}>
               {frameworks.map((item) => (
                 <MenuItem key={item.id} value={item.name}>
                   {item.name}
@@ -63,7 +63,7 @@ function AppRegistry(): JSX.Element {
           </FrameworkSelect>
           <Box display="flex" flexDirection="column" alignItems="start">
             <Typography marginBottom={'10px'}>
-              {t('appRegistry.contributors')}
+              {t('applications.contributors')}
             </Typography>
             <AvatarGroup>
               {contributors.map((item) => (
@@ -81,7 +81,7 @@ function AppRegistry(): JSX.Element {
             </IconButton>
           </LogoCard>
           <Box marginBottom={2} width={'100%'}>
-            <Typography>{t('appRegistry.languages')}</Typography>
+            <Typography>{t('applications.languages')}</Typography>
             <List>
               {languages.map((item) => (
                 <ListItem key={item.id}>
@@ -94,7 +94,7 @@ function AppRegistry(): JSX.Element {
             </List>
           </Box>
           <Box marginBottom={2}>
-            <Typography>{t('appRegistry.dependencies')}</Typography>
+            <Typography>{t('applications.dependencies')}</Typography>
             <List>
               {dependencies.map((item) => (
                 <ListItem key={item.id}>

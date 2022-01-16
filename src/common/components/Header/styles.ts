@@ -1,5 +1,4 @@
 import { styled, AppBar, alpha, InputBase } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
 
 export const FakeToolbar = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
