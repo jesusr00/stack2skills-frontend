@@ -26,6 +26,7 @@ import {
 } from '@mui/icons-material';
 import { appStore } from '~/common';
 import { observer } from 'mobx-react-lite';
+import OrganizationSelect from '../OrganizationSelect';
 
 const Header = observer(() => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -129,9 +130,11 @@ const Header = observer(() => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h4" sx={{ flexGrow: 1 }} fontWeight={700}>
+          <Typography variant="h4" sx={{ flexGrow: 0.2 }} fontWeight={700}>
             Stack2Skill
           </Typography>
+          <OrganizationSelect />
+          <Box sx={{ flexGrow: 1 }} />
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

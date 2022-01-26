@@ -5,7 +5,6 @@ import {
   Button as MuiButton,
   Container as MuiContainer,
   Typography as MuiTypography,
-  Paper as MuiPaper,
   Fab as MuiFab,
 } from '@mui/material';
 
@@ -15,7 +14,7 @@ export const RootContainer = styled(MuiContainer)(() => ({
   justifyContent: 'center',
 }));
 
-export const HeadTypografy = styled(MuiTypography)(({ theme }) => ({
+export const HeadTypography = styled(MuiTypography)(({ theme }) => ({
   margin: '2em 2em 0 2em',
   [theme.breakpoints.down('md')]: {
     margin: '1em 0 0 1em',
@@ -38,30 +37,6 @@ export const VerticalBox = styled(MuiBox)(({ theme }) => ({
     width: '100%',
     margin: 0,
   },
-}));
-
-export const VerticalLogoBox = styled(VerticalBox)(({ theme }) => ({
-  margin: '2em',
-  width: '20%',
-  [theme.breakpoints.down('md')]: {
-    margin: '1em auto 0 auto',
-  },
-}));
-
-export const LogoPaper = styled(MuiPaper)(({ theme }) => ({
-  width: 160,
-  height: 160,
-  borderRadius: 15,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  [theme.breakpoints.down('md')]: {
-    margin: '1em',
-  },
-}));
-
-export const Paper = styled(MuiPaper)(() => ({
-  margin: '0.7em',
 }));
 
 export const TextField = styled(MuiTextField)(() => ({

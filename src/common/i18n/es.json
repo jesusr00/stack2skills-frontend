@@ -5,5 +5,9 @@
   "empty": "Nada para mostrar",
   "org": "Organizaciones",
   "applications": "Aplicaciones",
-  "inDev": "Esta sección se encuentra en desarrollo. Proximamente estará disponible."
+  "inDev": "Esta sección se encuentra en desarrollo. Proximamente estará disponible.",
+  "repository-source": "Fuente Del Repositorio",
+  "select-organization": "Selecciona una Organización",
+  "create-organization": "Crear una nueva organización",
+  "agree": "Aceptar"
 }

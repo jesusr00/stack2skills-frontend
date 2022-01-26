@@ -1,4 +1,6 @@
 import ServerManager from './ServerManager';
-import ServerManagerProvider from './ServerManagerProvider';
+import ServerManagerProvider, {
+  useServerManager,
+} from './ServerManagerProvider';
 
-export { ServerManager, ServerManagerProvider };
+export { ServerManager, ServerManagerProvider, useServerManager };

@@ -8,9 +8,11 @@ import {
   HeadTypografy,
   LogoPaper,
 } from './styles';
-import { Avatar, Box } from '@mui/material';
+import { Avatar, Box, CircularProgress } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useServerManager } from '~/common/axios';
+import { useNavigate } from 'react-router-dom';
 
 interface organizationData {
   name: string;
@@ -22,12 +24,23 @@ export default function CreateOrganization(): JSX.Element {
   const [organizationData, setOrganizationData] = useState<organizationData>({
     name: '',
   });
+  const [requestInProgress, setRequestInProgress] = useState<boolean>(false);
 
+  const serverManager = useServerManager();
+  const navigate = useNavigate();
   const handleChangeData =
     (prop: keyof organizationData) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setOrganizationData({ ...organizationData, [prop]: event.target.value });
     };
+
+  const handleSubmit = () => {
+    setRequestInProgress(true);
+    serverManager.createOrganization(organizationData).then(() => {
+      navigate('/app');
+      setRequestInProgress(false);
+    });
+  };
 
   return (
     <RootContainer>
@@ -52,9 +65,14 @@ export default function CreateOrganization(): JSX.Element {
             />
             <Button
               variant={'contained'}
-              disabled={organizationData.name == ''}
+              disabled={organizationData.name == '' || requestInProgress}
+              onClick={handleSubmit}
             >
-              {t('organization.create')}
+              {requestInProgress ? (
+                <CircularProgress size={24} />
+              ) : (
+                t('organization.create')
+              )}
             </Button>
           </VerticalBox>
           <VerticalLogoBox>

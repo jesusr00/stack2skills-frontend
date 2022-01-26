@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from '~/common';
 import { Add as AddIcon } from '@mui/icons-material';
 import EmptySpace from '~/common/components/EmtySpace';
 import { Fab } from './styles';

@@ -3,7 +3,11 @@
   "projects": "Projects",
   "app-registry": "App registry",
   "empty": "Nothing to Show",
-  "org": "Organozations",
+  "org": "Organizations",
   "applications": "Applications",
-  "inDev": "This section is under development. It will be available soon."
+  "inDev": "This section is under development. It will be available soon.",
+  "repository-source": "Repository Source",
+  "select-organization": "Select an organization",
+  "create-organization": "Create new organization",
+  "agree": "Accept"
 }

@@ -9,6 +9,7 @@ import { langs as organizationLangs } from '~/modules/organization';
 import { langs as accountLangs } from '~/modules/account';
 import { langs as applicationsLangs } from '~/modules/applications';
 import { langs as signInLangs } from '~/modules/sign_in';
+import { langs as repositorySourceLangs } from '~/modules/repository-source';
 import { Config } from '.';
 
 i18n
@@ -31,6 +32,7 @@ i18n
           account: accountLangs.es,
           applications: applicationsLangs.es,
           signIn: signInLangs.es,
+          repositorySource: repositorySourceLangs.es,
         },
       },
       en: {
@@ -42,6 +44,7 @@ i18n
           account: accountLangs.en,
           applications: applicationsLangs.en,
           signIn: signInLangs.en,
+          repositorySource: repositorySourceLangs.en,
         },
       },
     },

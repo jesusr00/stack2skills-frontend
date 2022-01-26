@@ -3,7 +3,7 @@ import {
   Ballot as BallotIcon,
   Dashboard as DashboardIcon,
   AppRegistration as AppRegistrationIcon,
-  Groups as GroupsIcon,
+  Code as CodeIcon,
 } from '@mui/icons-material';
 
 import { RouteManifest } from '~/types';
@@ -13,15 +13,18 @@ const Dashboard = React.lazy(() => import('~/modules/dashboard'));
 const CreateOrganization = React.lazy(
   () => import('~/modules/organization/views/CreateOrganization'),
 );
-const ListOrganizations = React.lazy(
-  () => import('~/modules/organization/views/ListOrganizations'),
-);
 const MyAccount = React.lazy(() => import('~/modules/account'));
 const AppRegistry = React.lazy(
   () => import('~/modules/applications/views/AppRegistry'),
 );
 const ListApplications = React.lazy(
   () => import('~/modules/applications/views/ListApplications'),
+);
+const CreateRepositorySource = React.lazy(
+  () => import('~/modules/repository-source/views/CreateRepositorySource'),
+);
+const ListRepositorySource = React.lazy(
+  () => import('~/modules/repository-source/views/ListRepositorySource'),
 );
 
 const routes: RouteManifest[] = [
@@ -63,20 +66,27 @@ const routes: RouteManifest[] = [
     component: () => <MyAccount />,
   },
   {
-    id: 6,
-    path: '/organization',
-    title: 'org',
-    showInSidebar: true,
-    icon: <GroupsIcon />,
-    component: () => <ListOrganizations />,
-  },
-  {
     id: 7,
     path: '/apps',
     title: 'applications',
     showInSidebar: true,
     icon: <AppRegistrationIcon />,
     component: () => <ListApplications />,
+  },
+  {
+    id: 8,
+    path: '/repository-source',
+    title: 'repository-source',
+    showInSidebar: true,
+    icon: <CodeIcon />,
+    component: () => <ListRepositorySource />,
+  },
+  {
+    id: 9,
+    path: '/repository-source/create',
+    title: 'repository-source',
+    showInSidebar: false,
+    component: () => <CreateRepositorySource />,
   },
   {
     id: 0,

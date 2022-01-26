@@ -1,5 +1,6 @@
 import Header from '../Header';
 import AppDrawer from '~/common/components/AppDrawer';
+import SelectOrganizationDialog from '~/common/components/SelectOrganizationDialog';
 import { ReactNode } from 'react';
 
 type LayoutProps = {
@@ -13,6 +14,7 @@ function Layout(props: LayoutProps): JSX.Element {
     <>
       <Header />
       <AppDrawer />
+      <SelectOrganizationDialog />
       {children}
     </>
   );
