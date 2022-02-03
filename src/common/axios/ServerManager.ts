@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
 import { RepositorySource } from '~/types/RepositorySource';
-
 const API_URL = process.env.REACT_APP_API_URL;
 
 class ServerManager {
@@ -9,13 +8,9 @@ class ServerManager {
   constructor() {
     this.apiAxios = axios.create({
       baseURL: API_URL,
-    });
-  }
-
-  refreshInstance(): void {
-    this.apiAxios = axios.create({
-      baseURL: API_URL,
-      headers: {},
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+      },
     });
   }
 

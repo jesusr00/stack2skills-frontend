@@ -31,7 +31,7 @@ function Home(): JSX.Element {
           <Title variant={'h3'}>{t('home.title')}</Title>
           <Description variant={'h6'}>{t('home.subtitle')}</Description>
           <ButtonContainer>
-            <Link to={'/sign-in'}>
+            <Link to={'/auth/sign-in'}>
               <Button variant="contained">{t('home.login')}</Button>
             </Link>
           </ButtonContainer>

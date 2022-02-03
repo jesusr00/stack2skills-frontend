@@ -2,25 +2,26 @@ import { HeadContainer, BodyContainer, Item, Box } from './styles';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Typography, Grid, Icon } from '@mui/material';
 import { useMemo } from 'react';
-import avatar from '~/assets/images/user.jpg';
 
 import { ReactComponent as RepoIcon } from '~/assets/vectors/repoIcon.svg';
 import { ReactComponent as ProjectsIcon } from '~/assets/vectors/projectIcon.svg';
 import { ReactComponent as OrganizationIcon } from '~/assets/vectors/organizationIcon.svg';
+import { appStore } from '~/common';
 
 export default function MyAccount(): JSX.Element {
   const [t] = useTranslation();
 
   const avatarSrc = useMemo<string>(() => {
-    return 'https://www.gstatic.com/identity/boq/accountsettingsmobile/dataandpersonalization_icon_96x96_cdb6dff2e31ed6745ece4662231bfd48.png';
-  }, []);
+    return appStore.userData?.picture || '';
+  }, [appStore.userData]);
 
   return (
     <>
       <HeadContainer>
-        <Avatar sx={{ width: 112, height: 112 }} src={avatar} />
+        <Avatar sx={{ width: 112, height: 112 }} src={avatarSrc} />
         <Typography variant={'h4'} align={'center'}>
-          {t('account.welcome')}, Ernesto Fuentes Gonzales
+          {t('account.welcome')}, {appStore.userData?.firstName}{' '}
+          {appStore.userData?.lastName}
         </Typography>
       </HeadContainer>
       <BodyContainer container spacing={4}>

@@ -1,6 +1,7 @@
 import { makeObservable, action, observable } from 'mobx';
 import { Organization } from '~/types/Organization';
 import { ServerManager } from '~/common/axios';
+import { User } from '~/types';
 
 class AppStore {
   isDrawerOpen = false;
@@ -8,6 +9,13 @@ class AppStore {
   isOpenSelectOrganizationDialog = false;
   organizations?: Organization[];
   serverManager: ServerManager = new ServerManager();
+  userData?: User = {
+    accessToken: localStorage.getItem('accessToken') || '',
+    firstName: localStorage.getItem('firstName') || '',
+    lastName: localStorage.getItem('lastName') || '',
+    email: localStorage.getItem('email') || '',
+    picture: localStorage.getItem('picture') || '',
+  };
 
   constructor() {
     makeObservable<AppStore>(this, {
@@ -15,26 +23,36 @@ class AppStore {
       organization: observable,
       isOpenSelectOrganizationDialog: observable,
       organizations: observable,
+      userData: observable,
       toggleDrawer: action,
       changeOrganization: action,
       toggleIssOpenSelectOrganizationDialog: action,
     });
   }
 
-  toggleDrawer() {
+  toggleDrawer(): void {
     this.isDrawerOpen = !this.isDrawerOpen;
   }
-  changeOrganization(organization: Organization) {
+  changeOrganization(organization: Organization): void {
     this.organization = organization;
   }
-  toggleIssOpenSelectOrganizationDialog() {
+  toggleIssOpenSelectOrganizationDialog(): void {
     this.isOpenSelectOrganizationDialog = !this.isOpenSelectOrganizationDialog;
   }
-  setOrgamizations(org: Organization[]) {
+  setOrgamizations(org: Organization[]): void {
     this.organizations = org;
+  }
+  setUserData(userData: User): void {
+    this.userData = userData;
+    localStorage.setItem('accessToken', userData.accessToken);
+    localStorage.setItem('firstName', userData.firstName);
+    localStorage.setItem('lastName', userData.lastName);
+    localStorage.setItem('email', userData.email);
+    localStorage.setItem('picture', userData.picture);
   }
 }
 
 const appStore = new AppStore();
 
+export { AppStore };
 export default appStore;

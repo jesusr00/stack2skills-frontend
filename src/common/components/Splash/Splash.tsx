@@ -20,7 +20,8 @@ function Splash(): JSX.Element {
             (org) => org.id === query.get('organization'),
           )[0]
         : appStore.organizations?.[0];
-      navigate(pathname + '?organization=' + appStore.organization?.id);
+      if (pathname.match('/app'))
+        navigate(pathname + '?organization=' + appStore.organization?.id);
     });
   }, [query]);
 

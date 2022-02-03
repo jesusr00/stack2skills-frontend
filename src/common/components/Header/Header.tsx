@@ -7,6 +7,7 @@ import {
   Menu,
   MenuItem,
   Typography,
+  Avatar,
 } from '@mui/material';
 import {
   FakeToolbar,
@@ -17,7 +18,6 @@ import {
 } from './styles';
 import { Link } from '~/common';
 import {
-  AccountCircle as AccountCircleIcon,
   Mail as MailIcon,
   Notifications as NotificationsIcon,
   Menu as MenuIcon,
@@ -166,7 +166,7 @@ const Header = observer(() => {
             </IconButton>
           </Box>
           <IconButton
-            size="large"
+            size="small"
             edge="end"
             aria-label="account of current user"
             aria-controls={menuId}
@@ -174,7 +174,7 @@ const Header = observer(() => {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-            <AccountCircleIcon />
+            <Avatar sizes="small" src={appStore.userData?.picture} />
           </IconButton>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton

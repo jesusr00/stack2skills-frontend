@@ -2,5 +2,6 @@
   "head": "Create new repository source",
   "url": "Repository URL",
   "token": "Acces Token",
-  "create": "Create"
+  "create": "Create",
+  "repository-source": "Repository source"
 }

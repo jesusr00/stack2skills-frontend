@@ -23,7 +23,7 @@ const publicRoutes: RouteManifest[] = [
   },
   {
     id: 3,
-    path: '/sign-in',
+    path: '/auth/sign-in',
     title: 'SignIn',
     component: () => <SignIn />,
   },
