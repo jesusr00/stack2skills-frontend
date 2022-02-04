@@ -1,0 +1,56 @@
+name: QA deployment to App Engine
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+env:
+  SERVICE_NAME: staging-stack2skills-frontend
+  API_URL: https://staging-stack2skills-yfmnwrj6gq-ue.a.run.app
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Set up Node.js version
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install Yarn
+        run: npm install -g yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        env:
+          REACT_APP_API_URL: ${{ env.API_URL}}
+        run: yarn build
+
+      - name: Setup environment vars
+        env:
+          SERVICE_NAME: ${{ env.SERVICE_NAME }}
+        run: eval "echo \"$(cat app.yaml)\"" > app.yaml
+
+      - id: auth
+        name: 'Authenticate to Google Cloud'
+        uses: google-github-actions/auth@v0
+        with:
+          workload_identity_provider: 'projects/306696979547/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'stack2skills-frontend@cic-platform.iam.gserviceaccount.com'
+
+      - id: deploy
+        name: Deploy
+        uses: google-github-actions/deploy-appengine@v0
+
+      - id: 'test'
+        run: 'curl "${{ steps.deploy.outputs.url }}"'
