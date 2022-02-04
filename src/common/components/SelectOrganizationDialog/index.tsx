@@ -9,7 +9,7 @@ import {
   ListItemButton,
   Dialog,
   ListItemIcon,
-  Checkbox,
+  Radio,
 } from '@mui/material';
 import { DialogTitle } from './styles';
 import {
@@ -22,15 +22,18 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Organization } from '~/types/Organization';
+import { useServerManager } from '~/common/axios';
 
 const SelectOrganizationDialog = observer(() => {
   const [t] = useTranslation();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const serverManager = useServerManager();
 
   const changeOrg = (org: Organization) => {
     appStore.changeOrganization(org);
     navigate(pathname + '?organization=' + org.id);
+    serverManager.refreshInstance();
   };
 
   return (
@@ -66,10 +69,9 @@ const SelectOrganizationDialog = observer(() => {
                 key={org.id}
               >
                 <ListItemIcon>
-                  <Checkbox
+                  <Radio
                     edge="start"
                     checked={org.id === appStore.organization?.id}
-                    tabIndex={-1}
                     disableRipple
                   />
                 </ListItemIcon>

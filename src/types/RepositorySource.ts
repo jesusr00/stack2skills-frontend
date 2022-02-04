@@ -1,4 +1,6 @@
 export type RepositorySource = {
   url: string;
-  token: string;
+  accessToken: string;
+  name: string;
+  type: string;
 };

@@ -16,6 +16,7 @@ class AppStore {
     email: localStorage.getItem('email') || '',
     picture: localStorage.getItem('picture') || '',
   };
+  providers: string[] = [];
 
   constructor() {
     makeObservable<AppStore>(this, {
@@ -24,9 +25,12 @@ class AppStore {
       isOpenSelectOrganizationDialog: observable,
       organizations: observable,
       userData: observable,
+      providers: observable,
       toggleDrawer: action,
       changeOrganization: action,
       toggleIssOpenSelectOrganizationDialog: action,
+      setOrgamizations: action,
+      setUserData: action,
     });
   }
 
@@ -49,6 +53,9 @@ class AppStore {
     localStorage.setItem('lastName', userData.lastName);
     localStorage.setItem('email', userData.email);
     localStorage.setItem('picture', userData.picture);
+  }
+  setProviders(providers: string[]): void {
+    this.providers = providers;
   }
 }
 

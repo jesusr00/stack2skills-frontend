@@ -26,6 +26,9 @@ const CreateRepositorySource = React.lazy(
 const ListRepositorySource = React.lazy(
   () => import('~/modules/repository-source/views/ListRepositorySource'),
 );
+const ListOrganizations = React.lazy(
+  () => import('~/modules/organization/views/ListOrganizations'),
+);
 
 const routes: RouteManifest[] = [
   {
@@ -87,6 +90,13 @@ const routes: RouteManifest[] = [
     title: 'repository-source',
     showInSidebar: false,
     component: () => <CreateRepositorySource />,
+  },
+  {
+    id: 10,
+    path: '/organization',
+    title: 'org',
+    showInSidebar: false,
+    component: () => <ListOrganizations />,
   },
   {
     id: 0,

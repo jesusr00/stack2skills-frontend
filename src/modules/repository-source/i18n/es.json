@@ -1,7 +1,11 @@
 {
   "head": "Crear nueva fuente de repositorio",
   "url": "URL del Repositorio",
-  "token": "Token de acceso",
+  "accessToken": "Token de acceso",
   "create": "Crear",
-  "repository-source": "Fuente del repositorio"
+  "repository-source": "Fuente del repositorio",
+  "name": "Nombre",
+  "repoType": "Tipo de Repositorio",
+  "created": "Fuente del repositorio creado exitosamente",
+  "type": "Tipo"
 }

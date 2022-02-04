@@ -1,38 +1,21 @@
 import Lottie from 'react-lottie-player';
 import loadingSplashAnim from '~/assets/lotties/loading_splash_anim.json';
-import { useEffect, useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import appStore from '~/common/store';
-import { useServerManager } from '~/common/axios';
+//import { makeStyles } from '';
+import { styled } from '@mui/material';
+
+const StyledLottie = styled(Lottie)(() => ({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  margin: 'auto',
+  width: 150,
+  height: 150,
+}));
 
 function Splash(): JSX.Element {
-  const { search, pathname } = useLocation();
-  const navigate = useNavigate();
-  const serverManager = useServerManager();
-
-  const query = useMemo(() => new URLSearchParams(search), [search]);
-
-  useEffect(() => {
-    serverManager.getOrganizatios().then((r) => {
-      appStore.setOrgamizations(r.data);
-      appStore.organization = query.get('organization')
-        ? appStore.organizations?.filter(
-            (org) => org.id === query.get('organization'),
-          )[0]
-        : appStore.organizations?.[0];
-      if (pathname.match('/app'))
-        navigate(pathname + '?organization=' + appStore.organization?.id);
-    });
-  }, [query]);
-
-  return (
-    <Lottie
-      loop
-      animationData={loadingSplashAnim}
-      play
-      style={{ width: 150, height: 150 }}
-    />
-  );
+  return <StyledLottie loop animationData={loadingSplashAnim} play />;
 }
 
 export default Splash;

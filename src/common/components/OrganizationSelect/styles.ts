@@ -17,4 +17,7 @@ export const Button = styled(MuiButton)(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   minWidth: 120,
+  textTransform: 'none',
+  fontWeight: 600,
+  fontSize: '1rem',
 }));

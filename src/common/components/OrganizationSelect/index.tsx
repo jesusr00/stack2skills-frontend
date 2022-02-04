@@ -1,7 +1,7 @@
 import { Button } from './styles';
 import {
   ArrowDropDown as ArrowDropDownIcon,
-  AccountTree as AccountTreeIcon,
+  CorporateFare as CorporateFareIcon,
 } from '@mui/icons-material';
 import { appStore } from '~/common';
 import { observer } from 'mobx-react-lite';
@@ -11,7 +11,7 @@ const OrganizationSelect = observer(() => {
     <Button
       onClick={() => appStore.toggleIssOpenSelectOrganizationDialog()}
       color="inherit"
-      startIcon={<AccountTreeIcon />}
+      startIcon={<CorporateFareIcon />}
       endIcon={<ArrowDropDownIcon />}
     >
       {appStore.organization?.name}

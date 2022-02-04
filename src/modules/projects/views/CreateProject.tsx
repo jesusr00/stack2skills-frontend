@@ -15,25 +15,21 @@ import { useServerManager } from '~/common/axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 import { appStore } from '~/common';
+import ProjectData from '~/types/ProjectData';
 
-interface organizationData {
-  name: string;
-  description?: string;
-}
-
-export default function CreateOrganization(): JSX.Element {
+export default function CreateProject(): JSX.Element {
   const [t] = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const serverManager = useServerManager();
   const navigate = useNavigate();
 
-  const [organizationData, setOrganizationData] = useState<organizationData>({
+  const [organizationData, setOrganizationData] = useState<ProjectData>({
     name: '',
   });
   const [requestInProgress, setRequestInProgress] = useState<boolean>(false);
 
   const handleChangeData =
-    (prop: keyof organizationData) =>
+    (prop: keyof ProjectData) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setOrganizationData({ ...organizationData, [prop]: event.target.value });
     };

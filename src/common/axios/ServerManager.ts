@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import ProjectData from '~/types/ProjectData';
 import { RepositorySource } from '~/types/RepositorySource';
-const API_URL = process.env.REACT_APP_API_URL;
 
+const API_URL = process.env.REACT_APP_API_URL;
 class ServerManager {
   private apiAxios: AxiosInstance;
 
@@ -10,6 +11,20 @@ class ServerManager {
       baseURL: API_URL,
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+      },
+    });
+  }
+
+  refreshInstance(): void {
+    this.apiAxios = axios.create({
+      baseURL: API_URL,
+      headers: {
+        Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
+      },
+      params: {
+        organization: new URLSearchParams(window.location.search).get(
+          'organization',
+        ),
       },
     });
   }
@@ -39,6 +54,10 @@ class ServerManager {
 
   createRepositorySource(data: RepositorySource): Promise<AxiosResponse> {
     return this.apiAxios.post('/repository', data);
+  }
+
+  createProject(data: ProjectData): Promise<AxiosResponse> {
+    return this.apiAxios.post('/project', data);
   }
 }
 

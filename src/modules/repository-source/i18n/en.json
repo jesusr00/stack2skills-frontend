@@ -1,7 +1,11 @@
 {
   "head": "Create new repository source",
   "url": "Repository URL",
-  "token": "Acces Token",
+  "accessToken": "Acces Token",
   "create": "Create",
-  "repository-source": "Repository source"
+  "repository-source": "Repository source",
+  "name": "Name",
+  "repoType": "Repository Type",
+  "created": "Successfully created repository source",
+  "type": "Type"
 }

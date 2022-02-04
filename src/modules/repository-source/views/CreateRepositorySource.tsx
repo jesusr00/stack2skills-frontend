@@ -5,19 +5,34 @@ import {
   RootContainer,
   TextField,
   VerticalBox,
+  FormControl,
 } from './styles';
-import { Box } from '@mui/material';
+import {
+  Box,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
 import { RepositorySource } from '~/types/RepositorySource';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useServerManager } from '~/common/axios';
+import { RepoType } from '~/types/RepoType';
+import { useSnackbar } from 'notistack';
+import { useNavigate } from 'react-router-dom';
 
 export default function CreateRepositorySource(): JSX.Element {
   const [t] = useTranslation();
   const serverManager = useServerManager();
+  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
+
   const [repositorySource, setRepositorySource] = useState<RepositorySource>({
     url: '',
-    token: '',
+    accessToken: '',
+    name: '',
+    type: '',
   });
 
   const handleChangeData =
@@ -27,9 +42,10 @@ export default function CreateRepositorySource(): JSX.Element {
     };
 
   const handleSubmit = () => {
-    serverManager
-      .createRepositorySource(repositorySource)
-      .then((r) => console.log(r));
+    serverManager.createRepositorySource(repositorySource).then(() => {
+      enqueueSnackbar(t('repositorySource.created'), { variant: 'success' });
+      navigate('/app');
+    });
   };
 
   return (
@@ -42,6 +58,13 @@ export default function CreateRepositorySource(): JSX.Element {
           <VerticalBox>
             <TextField
               fullWidth
+              label={t('repositorySource.name')}
+              value={repositorySource.name}
+              required
+              onChange={handleChangeData('name')}
+            />
+            <TextField
+              fullWidth
               label={t('repositorySource.url')}
               value={repositorySource.url}
               required
@@ -49,15 +72,35 @@ export default function CreateRepositorySource(): JSX.Element {
             />
             <TextField
               fullWidth
-              label={t('repositorySource.token')}
+              label={t('repositorySource.accessToken')}
               required
-              value={repositorySource.token}
-              onChange={handleChangeData('token')}
+              value={repositorySource.accessToken}
+              onChange={handleChangeData('accessToken')}
             />
+            <FormControl fullWidth>
+              <InputLabel>{t('repositorySource.repoType')}</InputLabel>
+              <Select
+                value={repositorySource.type}
+                label={t('repositorySource.repoType')}
+                onChange={(event: SelectChangeEvent) =>
+                  setRepositorySource({
+                    ...repositorySource,
+                    type: event.target.value,
+                  })
+                }
+              >
+                <MenuItem value={RepoType.Github}>Github</MenuItem>
+                <MenuItem value={RepoType.Azure}>Azure</MenuItem>
+                <MenuItem value={RepoType.GitLab}>GitLab</MenuItem>
+              </Select>
+            </FormControl>
             <Button
               variant={'contained'}
               disabled={
-                repositorySource.url == '' || repositorySource.token === ''
+                repositorySource.url == '' ||
+                repositorySource.accessToken === '' ||
+                repositorySource.name === '' ||
+                repositorySource.type === ''
               }
               onClick={handleSubmit}
             >

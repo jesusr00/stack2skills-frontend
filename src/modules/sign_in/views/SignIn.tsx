@@ -12,18 +12,18 @@ import SignInAnimation from '~/assets/Lottie/sign-in-anim.json';
 import { ReactComponent as MicrosoftIcon } from '~/assets/vectors/microsoft.svg';
 import { ReactComponent as GoogleIcon } from '~/assets/vectors/google.svg';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState, useMemo } from 'react';
-import { useServerManager } from '~/common/axios';
+import { useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { appStore } from '~/common';
+import { observer } from 'mobx-react-lite';
+import { useServerManager } from '~/common/axios';
 
-const SignIn = (): React.ReactElement => {
+const SignIn = observer(() => {
   const [t] = useTranslation();
-  const serverManager = useServerManager();
   const { search } = useLocation();
   const navigate = useNavigate();
+  const serverManager = useServerManager();
 
-  const [providers, setProviders] = useState<string[]>([]);
   const query = useMemo(() => new URLSearchParams(search), [search]);
 
   useEffect(() => {
@@ -41,15 +41,10 @@ const SignIn = (): React.ReactElement => {
         email,
         picture,
       });
+      serverManager.refreshInstance();
       navigate('/app');
     }
   }, [search]);
-
-  useEffect(() => {
-    serverManager.getGlogalConfig().then((r) => {
-      setProviders(r.data.providers);
-    });
-  }, []);
 
   return (
     <RootContainer>
@@ -61,7 +56,7 @@ const SignIn = (): React.ReactElement => {
             flexDirection={'column'}
             alignItems={'flex-start'}
           >
-            {providers.some((provider) => provider === 'GOOGLE') && (
+            {appStore.providers.some((provider) => provider === 'GOOGLE') && (
               <SignInButton
                 href={`${process.env.REACT_APP_API_URL}/auth/google`}
                 startIcon={<GoogleIcon height={'20'} />}
@@ -69,7 +64,9 @@ const SignIn = (): React.ReactElement => {
                 {t('signIn.google')}
               </SignInButton>
             )}
-            {providers.some((provider) => provider === 'MICROSOFT') && (
+            {appStore.providers.some(
+              (provider) => provider === 'MICROSOFT',
+            ) && (
               <SignInButton startIcon={<MicrosoftIcon height={'20'} />}>
                 {t('signIn.microsoft')}
               </SignInButton>
@@ -90,6 +87,6 @@ const SignIn = (): React.ReactElement => {
       </SignInCard>
     </RootContainer>
   );
-};
+});
 
 export default SignIn;

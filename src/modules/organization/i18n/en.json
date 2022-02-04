@@ -2,5 +2,7 @@
   "head": "Create a new organization",
   "name": "Organization Name",
   "description": "Organization description",
-  "create": "Create Organization"
+  "create": "Create Organization",
+  "created": "Successfully created organization",
+  "organizations": "OrganizationsList"
 }

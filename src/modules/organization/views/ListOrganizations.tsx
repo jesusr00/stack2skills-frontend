@@ -1,24 +1,27 @@
-import { Add as AddIcon } from '@mui/icons-material';
-import { Fab, Paper } from './styles';
+import { Add as AddIcon, Edit as EditIcon } from '@mui/icons-material';
+import { Paper } from './styles';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Link } from 'react-router-dom';
+import { Link } from '~/common';
 import GridLoadingOverlay from '~/common/components/Grid/LoadingOverlay';
 import GridNoRowsOverlay from '~/common/components/Grid/NoRowsOverlay';
 import { useState, useEffect } from 'react';
 import { useServerManager } from '~/common/axios';
+import { IconButton } from '@mui/material';
+import PageTitle from '~/common/components/PageTitle';
+import { useTranslation } from 'react-i18next';
 
 export default function ListOrganizations(): JSX.Element {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [rows, setRows] = useState([]);
+  const [t] = useTranslation();
 
   const serverManager = useServerManager();
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', flex: 0.4, disableColumnMenu: true },
     {
       field: 'name',
       headerName: 'Name',
-      flex: 1,
+      flex: 4,
       editable: false,
       disableColumnMenu: true,
     },
@@ -28,6 +31,15 @@ export default function ListOrganizations(): JSX.Element {
       flex: 4,
       editable: false,
       disableColumnMenu: true,
+    },
+    {
+      field: 'id',
+      headerName: 'Edit',
+      renderCell: () => (
+        <IconButton>
+          <EditIcon />
+        </IconButton>
+      ),
     },
   ];
 
@@ -40,6 +52,13 @@ export default function ListOrganizations(): JSX.Element {
 
   return (
     <div>
+      <PageTitle title={t('organization.organizations')} disableMarginBottom>
+        <Link to={'/app/organization/create'}>
+          <IconButton>
+            <AddIcon />
+          </IconButton>
+        </Link>
+      </PageTitle>
       <Paper>
         <DataGrid
           rows={rows}
@@ -59,11 +78,6 @@ export default function ListOrganizations(): JSX.Element {
           filterMode={'client'}
         />
       </Paper>
-      <Link to={'/app/organization/create'}>
-        <Fab color="primary" aria-label="add">
-          <AddIcon />
-        </Fab>
-      </Link>
     </div>
   );
 }

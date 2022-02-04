@@ -2,7 +2,7 @@ import { HeadContainer, BodyContainer, Item, Box } from './styles';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Typography, Grid, Icon } from '@mui/material';
 import { useMemo } from 'react';
-
+import { Link } from '~/common';
 import { ReactComponent as RepoIcon } from '~/assets/vectors/repoIcon.svg';
 import { ReactComponent as ProjectsIcon } from '~/assets/vectors/projectIcon.svg';
 import { ReactComponent as OrganizationIcon } from '~/assets/vectors/organizationIcon.svg';
@@ -72,18 +72,22 @@ export default function MyAccount(): JSX.Element {
           </Item>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Item elevation={4}>
-            <Typography variant={'h5'}>{t('account.organizations')}</Typography>
-            <Icon
-              sx={{
-                width: 'auto',
-                height: 'auto',
-                display: { xs: 'none', md: 'block' },
-              }}
-            >
-              <OrganizationIcon width={'80px'} height={'80px'} />
-            </Icon>
-          </Item>
+          <Link to={'/app/organization'}>
+            <Item elevation={4}>
+              <Typography variant={'h5'}>
+                {t('account.organizations')}
+              </Typography>
+              <Icon
+                sx={{
+                  width: 'auto',
+                  height: 'auto',
+                  display: { xs: 'none', md: 'block' },
+                }}
+              >
+                <OrganizationIcon width={'80px'} height={'80px'} />
+              </Icon>
+            </Item>
+          </Link>
         </Grid>
       </BodyContainer>
     </>
