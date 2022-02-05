@@ -6,7 +6,6 @@ import {
   Toolbar,
   Menu,
   MenuItem,
-  Typography,
   Avatar,
 } from '@mui/material';
 import {
@@ -15,6 +14,7 @@ import {
   Search,
   SearchIconWrapper,
   StyledInputBase,
+  Typography,
 } from './styles';
 import { Link } from '~/common';
 import {
@@ -130,9 +130,11 @@ const Header = observer(() => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h4" sx={{ flexGrow: 0.2 }} fontWeight={700}>
-            Stack2Skill
-          </Typography>
+          <Link to={'/app'}>
+            <Typography variant="h4" sx={{ flexGrow: 0.2 }} fontWeight={700}>
+              Stack2Skill
+            </Typography>
+          </Link>
           <OrganizationSelect />
           <Box sx={{ flexGrow: 1 }} />
           <Search>

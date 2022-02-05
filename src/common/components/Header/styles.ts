@@ -1,4 +1,10 @@
-import { styled, AppBar, alpha, InputBase } from '@mui/material';
+import {
+  styled,
+  AppBar,
+  alpha,
+  InputBase,
+  Typography as MuiTypography,
+} from '@mui/material';
 
 export const FakeToolbar = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
@@ -45,4 +51,12 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: '20ch',
     },
   },
+}));
+
+export const Typography = styled(MuiTypography)(({ theme }) => ({
+  '&:hover': {
+    cursor: 'pointer',
+  },
+  color: theme.palette.common.white,
+  marginRight: '1em',
 }));

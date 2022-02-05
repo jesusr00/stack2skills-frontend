@@ -17,6 +17,7 @@ import { Add as AddIcon } from '@mui/icons-material';
 import { Link } from '~/common';
 import { StyledPaper } from './styles';
 import { RepoType } from '~/types/RepoType';
+import { useLocation } from 'react-router-dom';
 
 export default function ListRepositorySource(): JSX.Element {
   const [repositorySources, setRepositorySources] = useState<
@@ -25,12 +26,13 @@ export default function ListRepositorySource(): JSX.Element {
 
   const [t] = useTranslation();
   const serverManager = useServerManager();
+  const { search } = useLocation();
 
   useEffect(() => {
     serverManager
       .getRepositorySource()
       .then((r) => setRepositorySources(r.data));
-  }, []);
+  }, [search]);
 
   return (
     <>
