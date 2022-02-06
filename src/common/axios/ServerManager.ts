@@ -59,6 +59,10 @@ class ServerManager {
   createProject(data: ProjectData): Promise<AxiosResponse> {
     return this.apiAxios.post('/project', data);
   }
+
+  getProject(): Promise<AxiosResponse> {
+    return this.apiAxios.get('/project');
+  }
 }
 
 export default ServerManager;

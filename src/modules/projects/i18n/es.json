@@ -1,3 +1,8 @@
 {
-  "projects-list": "Esta es una lista con los proyectos"
+  "projects": "Proyectos",
+  "name": "Nombre del Proyecto",
+  "create": "Crear Proyecto",
+  "created": "Proyecto creado exitosamente",
+  "description": "Descripción del proyecto",
+  "head": "Crear un nuevo proyecto"
 }

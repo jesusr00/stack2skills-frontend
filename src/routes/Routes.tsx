@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import SignIn from '~/modules/sign_in/index';
+import SignIn from '~/modules/sign-in/index';
 
 import { RouteManifest } from '~/types';
 import PrivateRoutes from './PrivateRoutes';

@@ -1,3 +1,8 @@
 {
-  "projects-list": "This is a list of all projects"
+  "projects": "Projects",
+  "name": "Project Name",
+  "create": "Create Project",
+  "created": "Project Created",
+  "description": "Project Description",
+  "head": "Create a new project"
 }

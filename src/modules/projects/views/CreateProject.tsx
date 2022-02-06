@@ -14,7 +14,6 @@ import { useState } from 'react';
 import { useServerManager } from '~/common/axios';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import { appStore } from '~/common';
 import ProjectData from '~/types/ProjectData';
 
 export default function CreateProject(): JSX.Element {
@@ -23,7 +22,7 @@ export default function CreateProject(): JSX.Element {
   const serverManager = useServerManager();
   const navigate = useNavigate();
 
-  const [organizationData, setOrganizationData] = useState<ProjectData>({
+  const [projectData, setProjectData] = useState<ProjectData>({
     name: '',
   });
   const [requestInProgress, setRequestInProgress] = useState<boolean>(false);
@@ -31,51 +30,48 @@ export default function CreateProject(): JSX.Element {
   const handleChangeData =
     (prop: keyof ProjectData) =>
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      setOrganizationData({ ...organizationData, [prop]: event.target.value });
+      setProjectData({ ...projectData, [prop]: event.target.value });
     };
 
   const handleSubmit = () => {
     setRequestInProgress(true);
-    serverManager.createOrganization(organizationData).then(() => {
-      enqueueSnackbar(t('organization.created'), { variant: 'success' });
-      navigate('/app');
+    serverManager.createProject(projectData).then(() => {
+      enqueueSnackbar(t('projects.created'), { variant: 'success' });
+      navigate('/app/projects');
       setRequestInProgress(false);
-      serverManager.getOrganizatios().then((r) => {
-        appStore.setOrgamizations(r.data);
-      });
     });
   };
 
   return (
     <RootContainer>
       <Box>
-        <HeadTypografy variant="h4">{t('organization.head')}</HeadTypografy>
+        <HeadTypografy variant="h4">{t('projects.head')}</HeadTypografy>
         <HorizontalBox>
           <VerticalBox>
             <TextField
               fullWidth
-              label={t('organization.name')}
-              value={organizationData.name}
+              label={t('projects.name')}
+              value={projectData.name}
               required
               onChange={handleChangeData('name')}
             />
             <TextField
               fullWidth
-              label={t('organization.description')}
+              label={t('projects.description')}
               multiline
               maxRows={5}
-              value={organizationData.description}
+              value={projectData.description}
               onChange={handleChangeData('description')}
             />
             <Button
               variant={'contained'}
-              disabled={organizationData.name == '' || requestInProgress}
+              disabled={projectData.name == '' || requestInProgress}
               onClick={handleSubmit}
             >
               {requestInProgress ? (
                 <CircularProgress size={24} />
               ) : (
-                t('organization.create')
+                t('projects.create')
               )}
             </Button>
           </VerticalBox>

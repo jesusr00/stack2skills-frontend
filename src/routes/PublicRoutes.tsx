@@ -6,7 +6,7 @@ import PrivateRoutes from './PrivateRoutes';
 
 const Home = lazy(() => import('~/modules/home'));
 const Layout = lazy(() => import('~/common/components/Layout'));
-const SignIn = lazy(() => import('~/modules/sign_in'));
+const SignIn = lazy(() => import('~/modules/sign-in'));
 
 const publicRoutes: RouteManifest[] = [
   {

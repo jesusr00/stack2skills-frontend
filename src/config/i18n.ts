@@ -8,7 +8,7 @@ import { langs as commonLangs } from '~/common';
 import { langs as organizationLangs } from '~/modules/organization';
 import { langs as accountLangs } from '~/modules/account';
 import { langs as applicationsLangs } from '~/modules/applications';
-import { langs as signInLangs } from '~/modules/sign_in';
+import { langs as signInLangs } from '~/modules/sign-in';
 import { langs as repositorySourceLangs } from '~/modules/repository-source';
 import { Config } from '.';
 

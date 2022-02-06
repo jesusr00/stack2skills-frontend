@@ -29,6 +29,9 @@ const ListRepositorySource = React.lazy(
 const ListOrganizations = React.lazy(
   () => import('~/modules/organization/views/ListOrganizations'),
 );
+const CreateProject = React.lazy(
+  () => import('~/modules/projects/views/CreateProject'),
+);
 
 const routes: RouteManifest[] = [
   {
@@ -97,6 +100,13 @@ const routes: RouteManifest[] = [
     title: 'org',
     showInSidebar: false,
     component: () => <ListOrganizations />,
+  },
+  {
+    id: 11,
+    path: '/projects/create',
+    title: 'projects',
+    showInSidebar: false,
+    component: () => <CreateProject />,
   },
   {
     id: 0,
