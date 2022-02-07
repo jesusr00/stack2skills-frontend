@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
+import ApplicationDTO from '~/types/ApplicationDTO';
 import ProjectData from '~/types/ProjectData';
 import { RepositorySource } from '~/types/RepositorySource';
 
@@ -73,6 +74,18 @@ class ServerManager {
 
   getProject(): Promise<AxiosResponse> {
     return this.apiAxios.get('/project');
+  }
+
+  getFramework(): Promise<AxiosResponse> {
+    return this.apiAxios.get('/framework');
+  }
+
+  createApplication(data: ApplicationDTO): Promise<AxiosResponse> {
+    return this.apiAxios.post('/application', data);
+  }
+
+  getApplication(): Promise<AxiosResponse> {
+    return this.apiAxios.get('/application');
   }
 }
 

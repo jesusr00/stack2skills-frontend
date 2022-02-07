@@ -4,8 +4,9 @@ import {
   TextField as MuiTextField,
   Grid,
   Paper,
-  FormControl,
-  Fab as MuiFab,
+  FormControl as MuiFormControl,
+  Button as MuiButton,
+  TableContainer as MuiTableContainer,
 } from '@mui/material';
 
 export const RootContainer = styled(Container)(() => ({
@@ -18,21 +19,18 @@ export const GridContainer = styled(Grid)(({ theme }) => ({
     flexDirection: 'column',
   },
 }));
-export const AppNameField = styled(MuiTextField)(() => ({
-  marginBottom: 15,
-  width: '90%',
-}));
 
 export const TextField = styled(MuiTextField)(() => ({
   width: '90%',
   marginBottom: 15,
 }));
 
-export const URLRepo = styled(MuiTextField)(() => ({
+export const FormControl = styled(MuiFormControl)(() => ({
   width: '90%',
   marginBottom: 15,
 }));
-export const FrameworkSelect = styled(FormControl)(() => ({
+
+export const Button = styled(MuiButton)(() => ({
   width: '90%',
   marginBottom: 15,
 }));
@@ -48,8 +46,11 @@ export const LogoCard = styled(Paper)(() => ({
   fontSize: '2rem',
 }));
 
-export const Fab = styled(MuiFab)(() => ({
-  position: 'absolute',
-  right: 10,
-  bottom: 10,
+export const StyledPaper = styled(Paper)(() => ({
+  margin: '1em',
+  width: 'auto',
+}));
+
+export const TableContainer = styled(MuiTableContainer)(() => ({
+  padding: '1em',
 }));
