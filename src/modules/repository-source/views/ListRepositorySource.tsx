@@ -1,24 +1,17 @@
-import {
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
-  IconButton,
-  TableContainer,
-  Paper,
-} from '@mui/material';
+import { IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { RepositorySource } from '~/types/RepositorySource';
 import { useServerManager } from '~/common/axios';
 import PageTitle from '~/common/components/PageTitle';
-import { Add as AddIcon, Edit as EditIcon } from '@mui/icons-material';
-import { Link } from '~/common';
+import { Add as AddIcon } from '@mui/icons-material';
+import { appStore, Link } from '~/common';
 import { StyledPaper } from './styles';
 import { RepoType } from '~/types/RepoType';
-import Splash from '~/common/components/Splash';
 import { useLocation } from 'react-router-dom';
+import { DataGrid, GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import GridLoadingOverlay from '~/common/components/Grid/LoadingOverlay';
+import GridNoRowsOverlay from '~/common/components/Grid/NoRowsOverlay';
 
 export default function ListRepositorySource(): JSX.Element {
   const [repositorySources, setRepositorySources] = useState<
@@ -34,9 +27,37 @@ export default function ListRepositorySource(): JSX.Element {
     setIsLoading(true);
     serverManager
       .getRepositorySource()
-      .then((r) => setRepositorySources(r.data))
-      .finally(() => setIsLoading(false));
-  }, [search]);
+      .then((r) => {
+        setRepositorySources(r.data);
+        setIsLoading(false);
+      })
+      .catch(() => setRepositorySources([]));
+  }, [search, appStore.organization?.id]);
+
+  const columns: GridColDef[] = [
+    {
+      field: 'name',
+      headerName: 'Name',
+      flex: 2,
+      editable: false,
+      disableColumnMenu: true,
+    },
+    {
+      field: 'url',
+      headerName: 'URL',
+      flex: 4,
+      editable: false,
+      disableColumnMenu: true,
+    },
+    {
+      field: 'type',
+      headerName: 'Type',
+      flex: 4,
+      renderCell: (params: GridRenderCellParams) => {
+        return RepoType[params.row.type];
+      },
+    },
+  ];
 
   return (
     <>
@@ -50,47 +71,26 @@ export default function ListRepositorySource(): JSX.Element {
           </IconButton>
         </Link>
       </PageTitle>
-      {isLoading ? (
-        <Splash />
-      ) : (
-        <StyledPaper>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>{t('repositorySource.name')}</TableCell>
-                  <TableCell>{t('repositorySource.url')}</TableCell>
-                  <TableCell>{t('repositorySource.type')}</TableCell>
-                  <TableCell />
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {repositorySources.map((repositorySource) => (
-                  <TableRow
-                    key={repositorySource.url}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {repositorySource.name}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {repositorySource.url}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {RepoType[repositorySource.type as unknown as number]}
-                    </TableCell>
-                    <TableCell>
-                      <IconButton>
-                        <EditIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </StyledPaper>
-      )}
+
+      <StyledPaper>
+        <DataGrid
+          rows={repositorySources}
+          columns={columns}
+          //rowsPerPageOptions={[5, 10, 20]}
+          paginationMode={'client'}
+          pageSize={10}
+          pagination
+          loading={isLoading}
+          autoHeight
+          autoPageSize
+          disableSelectionOnClick
+          components={{
+            LoadingOverlay: GridLoadingOverlay,
+            NoRowsOverlay: GridNoRowsOverlay,
+          }}
+          filterMode={'client'}
+        />
+      </StyledPaper>
     </>
   );
 }

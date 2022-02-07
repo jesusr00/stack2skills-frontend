@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosError } from 'axios';
 import ProjectData from '~/types/ProjectData';
 import { RepositorySource } from '~/types/RepositorySource';
 
@@ -13,6 +13,17 @@ class ServerManager {
         Authorization: 'Bearer ' + localStorage.getItem('accessToken'),
       },
     });
+
+    this.apiAxios.interceptors.response.use(
+      (res) => res,
+      this.unauthorizedInterceptors,
+    );
+  }
+
+  private unauthorizedInterceptors(error: AxiosError) {
+    if (error.response?.status === 401) window.location.href = '/auth/sign-in';
+
+    throw error;
   }
 
   refreshInstance(): void {

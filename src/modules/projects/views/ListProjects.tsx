@@ -1,13 +1,4 @@
-import {
-  IconButton,
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-} from '@mui/material';
+import { IconButton } from '@mui/material';
 import { Add as AddIcon, Edit as EditIcon } from '@mui/icons-material';
 import { useTranslation } from 'react-i18next';
 import PageTitle from '~/common/components/PageTitle';
@@ -16,8 +7,10 @@ import { StyledPaper } from './styles';
 import ProjectData from '~/types/ProjectData';
 import { useState, useEffect } from 'react';
 import { useServerManager } from '~/common/axios';
-import Splash from '~/common/components/Splash';
 import { useLocation } from 'react-router-dom';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import GridLoadingOverlay from '~/common/components/Grid/LoadingOverlay';
+import GridNoRowsOverlay from '~/common/components/Grid/NoRowsOverlay';
 
 function ProjectList(): JSX.Element {
   const [t] = useTranslation();
@@ -25,17 +18,44 @@ function ProjectList(): JSX.Element {
   const { search } = useLocation();
 
   const [projects, setProjects] = useState<ProjectData[]>([]);
-  const [isLoadig, setIsLoadig] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsLoadig(true);
-    serverManager
-      .getProject()
-      .then((r) => {
-        setProjects(r.data);
-      })
-      .finally(() => setIsLoadig(false));
+    setIsLoading(true);
+    serverManager.getProject().then((r) => {
+      setProjects(r.data);
+      setIsLoading(false);
+    });
   }, [appStore.organization?.id, search]);
+
+  const columns: GridColDef[] = [
+    {
+      field: 'name',
+      headerName: 'Name',
+      flex: 4,
+      editable: false,
+      disableColumnMenu: true,
+    },
+    {
+      field: 'description',
+      headerName: 'Description',
+      flex: 4,
+      editable: false,
+      disableColumnMenu: true,
+    },
+    {
+      field: 'id',
+      headerName: '',
+      renderCell: () => (
+        <IconButton>
+          <EditIcon />
+        </IconButton>
+      ),
+      disableColumnMenu: true,
+      disableReorder: true,
+      editable: false,
+    },
+  ];
 
   return (
     <>
@@ -46,43 +66,25 @@ function ProjectList(): JSX.Element {
           </IconButton>
         </Link>
       </PageTitle>
-      {isLoadig ? (
-        <Splash />
-      ) : (
-        <StyledPaper>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>{t('projects.name')}</TableCell>
-                  <TableCell>{t('projects.description')}</TableCell>
-                  <TableCell />
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {projects.map((project: ProjectData) => (
-                  <TableRow
-                    key={project.name}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {project.name}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      {project.description}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      <IconButton>
-                        <EditIcon />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </StyledPaper>
-      )}
+      <StyledPaper>
+        <DataGrid
+          rows={projects}
+          columns={columns}
+          //rowsPerPageOptions={[5, 10, 20]}
+          paginationMode={'client'}
+          pageSize={10}
+          pagination
+          loading={isLoading}
+          autoHeight
+          autoPageSize
+          disableSelectionOnClick
+          components={{
+            LoadingOverlay: GridLoadingOverlay,
+            NoRowsOverlay: GridNoRowsOverlay,
+          }}
+          filterMode={'client'}
+        />
+      </StyledPaper>
     </>
   );
 }
